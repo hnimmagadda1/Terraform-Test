@@ -1,0 +1,31 @@
+pipeline{
+  agent any
+   libraries{
+       lib('TerraformPipeline')
+   }
+    parameters{
+      choice(name: 'Action', choices:['apply', 'destroy'])
+    }
+    stages{
+     stage('checkout'){
+     steps{
+          gitcheckout()
+        }
+      }
+
+      stage('Init'){
+         steps{
+              sh 'terraform init'
+              }
+        }
+       stage('Action'){
+           when {
+              expression { params.Module == ${Action}}
+           }
+            steps{
+              sh 'terraform ${Action}'
+              }
+           }
+   }
+
+}
