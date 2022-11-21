@@ -15,7 +15,7 @@ pipeline{
 
       stage('Init'){
          steps{
-              sh 'terraform init'
+              echo 'terraform init'
               }
         }
        stage('Action'){
@@ -23,7 +23,7 @@ pipeline{
               expression { params.Module == ${Action}}
            }
             steps{
-              sh 'terraform ${Action}'
+              echo 'terraform ${Action}'
               }
            }
    }
