@@ -19,9 +19,9 @@ pipeline{
               }
         }
        stage('Action'){
-         #  when {
-          #    expression { params.Module == ${Action}}
-          #}
+           when {
+             expression { params.Module == ${Action}}
+          }
             steps{
               echo 'terraform ${Action}'
               }
